@@ -1,5 +1,5 @@
 class Timer
-  attr_reader :time_elapsed
+  attr_reader :time_elapsed, :start, :end
 
   def initialize
 
@@ -14,15 +14,7 @@ class Timer
   end
 
   def time_elapsed
-    @end - @start
+    (@end - @start).round
   end
 
 end
-
-
-timer = Timer.new
-timer.begin_timer
-sleep(5)
-timer.end_timer
-
-puts timer.time_elapsed
