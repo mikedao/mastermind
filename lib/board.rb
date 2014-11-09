@@ -1,8 +1,6 @@
 class Board
   attr_reader :layout, :guess, :possibilities
 
-
-
   def generate
     @layout = []
     4.times { @layout << ["r", "g", "b", "y"].sample }
@@ -20,12 +18,12 @@ class Board
     ["r", "g", "b", "y"].each do |element|
       correct_colors = correct_colors + [guess_count(guess)[element], layout_count[element]].min
     end
-    puts correct_colors
+    correct_colors - check_correct_positions(guess)
   end
 
   def layout_count
     layout_counts = Hash.new(0)
-    layout.map { |letter| layout_counts[letter] = layout.count(letter) }
+    layout.each { |letter| layout_counts[letter] = layout.count(letter) }
     layout_counts
   end
 

@@ -5,9 +5,12 @@ require './lib/game'
 
 class GameTest < Minitest::Test
 
-  def test_random_board_generates_easy_four
+  def test_board_created_when_game_started
     game = Game.new
-    assert_equal 4, game.generate_board.size
+    game.game_start
+    puts "New game board layout: #{game.board.layout}"
+    assert game.board.layout
   end
+
 
 end

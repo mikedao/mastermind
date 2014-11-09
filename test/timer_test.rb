@@ -29,8 +29,14 @@ class TimerTest < Minitest::Test
     timer.begin_timer
     sleep(5)
     timer.end_timer
-    assert_equal 5, timer.time_elapsed
+    assert_equal 5 , timer.time_elapsed
   end
 
+  def test_current_elapsed_time_works
+    timer = Timer.new
+    timer.begin_timer
+    sleep(5)
+    assert_equal 5, timer.current_elapsed_time
+  end
 
 end
