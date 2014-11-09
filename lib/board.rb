@@ -1,10 +1,6 @@
 class Board
   attr_reader :layout, :guess, :possibilities
 
-  def initalize()
-
-  end
-
 
 
   def generate
@@ -39,13 +35,3 @@ class Board
     guess_counts
   end
 end
-
-
-board = Board.new
-board.generate
-guess = ["r","g","b","y"]
-# board.submit_guess(guess)
-puts board.check_correct_positions(guess)
-puts "Layout Hash: #{board.layout_count}"
-puts "Guess Hash: #{board.guess_count(guess)}"
-board.check_correct_colors(guess)
