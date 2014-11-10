@@ -8,23 +8,25 @@ class Game
   def game_start
     @board = Board.new
     @timer = Timer.new
-    puts @board.layout.join
     @turns = 0
+    Display.clear_screen
+    puts @board.layout.join
+    puts Display.first_turn
   end
 
   def play
     loop do
       puts Display.what_guess(@timer.current_elapsed_time)
       answer = gets.chomp.downcase.split('')
-      if answer.size == 4
-        @turns += 1
-        puts Display.evaluated_guess(correct_positions(@board.layout, answer), correct_colors(@board.layout, answer))
-        winner(answer) if did_i_win?(@board.layout, answer)
-        puts "You have taken #{@turns} turns.\n"
-      elsif answer == 'q'
+      if answer[0] == 'q'
         puts Display.end_game
+        abort
+      elsif answer.size == 4
+        @turns += 1
+        puts Display.evaluated_guess(correct_positions(@board.layout, answer), correct_colors(@board.layout, answer), @turns)
+        winner(answer) if did_i_win?(@board.layout, answer)
       else
-        puts "Please enter an answer or 'quit'"
+        puts "Please enter an answer or 'q'"
       end
     end
   end
@@ -60,10 +62,11 @@ class Game
 
   def ask_play_again
     loop do
-      puts Display.play_again?
+      puts Display.play_again
       answer = gets.chomp.downcase
       case answer
       when 'p'
+        Display.clear_screen
         game_start
         play
       when 'q'

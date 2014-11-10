@@ -1,6 +1,7 @@
 module Display
 
   def self.intro
+    clear_screen
     "Welcome to MASTERMIND"
   end
 
@@ -21,22 +22,25 @@ module Display
     "Time elapsed: #{time_elapsed} seconds. What is your guess?"
   end
 
-  def self.evaluated_guess(correct_positions, wrong_colors)
-      "You have #{correct_positions} in the right position and #{wrong_colors} in the wrong position.\n"
+  def self.evaluated_guess(correct_positions, wrong_colors, turns)
+      "You have #{correct_positions} in the right position and #{wrong_colors} in the wrong position.\nYou have taken #{turns} turns.\n"
   end
 
   def self.win(layout, turns, time_elapsed)
     minutes = time_elapsed / 60
     seconds = time_elapsed % 60
-    "YOU HAVE WON THE GAME.\n Your winning guess was #{layout.join}, you took #{turns} turns, and you did it in #{minutes} minutes and #{seconds} seconds. "
+    "YOU HAVE WON THE GAME.\n Your winning guess was #{layout.join}, you took #{turns} turns, and you did it in #{minutes} #{minutes < 2 ? "minute" : "minutes"} and #{seconds} seconds. "
   end
 
   def self.end_game
     "GOODBYE"
   end
 
-  def self.play_again?
+  def self.play_again
     "Do you want to (p)lay again or (q)uit?"
   end
 
+  def self.clear_screen
+    print "\e[2J\e[f"
+  end
 end

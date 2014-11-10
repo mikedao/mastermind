@@ -4,7 +4,7 @@ class Board
   def initialize
     @layout = []
     4.times { @layout << ["r", "g", "b", "y"].sample }
-    puts "Randomly generating board..."
+    puts Display.first_turn
     @layout.join
   end
 
