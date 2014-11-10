@@ -7,7 +7,6 @@ class Game
 
   def game_start
     @board = Board.new
-    @board.generate
     @timer = Timer.new
     puts @board.layout.join
     @turns = 0
@@ -41,7 +40,6 @@ class Game
     ["r", "g", "b", "y"].map { |key|
       correct_colors += [calculate_hash(layout)[key], calculate_hash(answer)[key]].min }
       correct_colors - correct_positions(layout, answer)
-    end
   end
 
   def calculate_hash(start)
@@ -57,8 +55,10 @@ class Game
   def winner(layout)
     @timer.end_timer
     puts Display.win(layout, @turns, @timer.time_elapsed)
-    puts Display.end_game
+    ask_play_again
+  end
 
+  def ask_play_again
     loop do
       puts Display.play_again?
       answer = gets.chomp.downcase
@@ -70,8 +70,7 @@ class Game
         puts Display.end_game
         abort
       end
-
-
+    end
   end
 
 end

@@ -26,8 +26,9 @@ module Display
   end
 
   def self.win(layout, turns, time_elapsed)
-    "YOU HAVE WON THE GAME.\n Your winning guess was #{layout.join}, you took #{turns} turns, and you did it in #{time_elapsed} seconds. "
-
+    minutes = time_elapsed / 60
+    seconds = time_elapsed % 60
+    "YOU HAVE WON THE GAME.\n Your winning guess was #{layout.join}, you took #{turns} turns, and you did it in #{minutes} minutes and #{seconds} seconds. "
   end
 
   def self.end_game
@@ -37,7 +38,5 @@ module Display
   def self.play_again?
     "Do you want to (p)lay again or (q)uit?"
   end
-
-
 
 end

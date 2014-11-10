@@ -1,7 +1,7 @@
 class Board
   attr_reader :layout
 
-  def generate
+  def initialize
     @layout = []
     4.times { @layout << ["r", "g", "b", "y"].sample }
     puts "Randomly generating board..."

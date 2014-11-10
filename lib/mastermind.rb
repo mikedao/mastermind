@@ -16,6 +16,6 @@ loop do
     puts Display.end_game
     abort
   else
-    puts "Please enter a number or 'quit'"
+    puts "Please enter a choice or 'q'"
   end
 end
