@@ -32,15 +32,17 @@ class Game
   end
 
   def correct_positions(layout, answer)
-    count = 0
-    layout.length.times { |i| count += 1 if layout[i] == answer[i] }
-    count
+    (0..layout.length-1).select do |i|
+      layout[i] == answer[i]
+    end.size
   end
 
   def correct_colors(layout, answer)
     correct_colors = 0
-    ["r", "g", "b", "y"].map { |key|
-      correct_colors += [calculate_hash(layout)[key], calculate_hash(answer)[key]].min }
+    ["r", "g", "b", "y"].map do |key|
+      correct_colors += [calculate_hash(layout)[key],
+      calculate_hash(answer)[key]].min
+    end
       correct_colors - correct_positions(layout, answer)
   end
 
