@@ -4,7 +4,8 @@ class Board
   def generate
     @layout = []
     4.times { @layout << ["r", "g", "b", "y"].sample }
-    @layout
+    puts "Randomly generating board..."
+    @layout.join
   end
 
   def check_correct_positions(guess)
