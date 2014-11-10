@@ -1,3 +1,4 @@
+require_relative 'display'
 class Board
   attr_reader :layout
 
@@ -5,7 +6,7 @@ class Board
     @layout = []
     4.times { @layout << ["r", "g", "b", "y"].sample }
     puts Display.first_turn
-    @layout.join
+    # @layout.join
   end
 
 end
