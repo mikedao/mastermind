@@ -34,6 +34,10 @@ module Display
     "GOODBYE"
   end
 
+  def self.play_again?
+    "Do you want to (p)lay again or (q)uit?"
+  end
+
 
 
 end

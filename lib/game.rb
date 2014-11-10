@@ -1,7 +1,6 @@
 require_relative 'board'
 require_relative 'display'
 require_relative 'timer'
-require_relative 'take_turn'
 
 class Game
   attr_reader :board, :timer, :turns
@@ -25,7 +24,6 @@ class Game
         puts "You have taken #{@turns} turns.\n"
       elsif answer == 'q'
         puts Display.end_game
-        abort
       else
         puts "Please enter an answer or 'quit'"
       end
@@ -44,6 +42,7 @@ class Game
       correct_colors += [calculate_hash(layout)[key], calculate_hash(answer)[key]].min }
       correct_colors - correct_positions(layout, answer)
     end
+  end
 
   def calculate_hash(start)
     outgoing_hash = Hash.new(0)
@@ -59,7 +58,20 @@ class Game
     @timer.end_timer
     puts Display.win(layout, @turns, @timer.time_elapsed)
     puts Display.end_game
-    abort
+
+    loop do
+      puts Display.play_again?
+      answer = gets.chomp.downcase
+      case answer
+      when 'p'
+        game_start
+        play
+      when 'q'
+        puts Display.end_game
+        abort
+      end
+
+
   end
 
 end

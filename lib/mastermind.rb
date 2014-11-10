@@ -1,6 +1,5 @@
 require_relative 'game'
 require_relative 'display'
-require_relative 'take_turn'
 
 puts Display.intro
 game = Game.new
@@ -10,7 +9,6 @@ loop do
   case answer
   when 'p'
     game.game_start
-    # puts Display.initial_instructions
     game.play
   when 'i'
     puts Display.print_instructions
