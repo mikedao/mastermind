@@ -5,10 +5,6 @@ class Timer
     @start = Time.now
   end
 
-  # def begin_timer
-  #   @start = Time.now
-  # end
-
   def end_timer
     @end = Time.now
   end
