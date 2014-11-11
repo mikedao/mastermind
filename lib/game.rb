@@ -14,11 +14,11 @@ class Game
               :timer,
               :highscore
 
+
   def initialize(instream, outstream)
-    @guess          = 0
+    @guess          = ""
     @turns          = 0
     @layout         = Board.new.layout
-    # @messages       = messages
     @command        = ""
     @instream       = instream
     @outstream      = outstream

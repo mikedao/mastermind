@@ -8,11 +8,12 @@ class Highscore
                 :outstream
 
   def initialize(instream, outstream, filename)
-    @instream   = instream
-    @outstream  = outstream
-    @scores     = []
-    @filename   = filename
-    @top_ten    = []
+    @instream             = instream
+    @outstream            = outstream
+    @scores               = []
+    @filename             = filename
+    @top_ten              = []
+    @header_for_display   = "#{"Rank".ljust(10)}#{"Name".ljust(10)} #{"Answer".ljust(10)} #{"Score".ljust(10)} #{"Time".ljust(10)}"
   end
 
   def do_high_scores(name, answer, score, time)
@@ -31,10 +32,26 @@ class Highscore
     end
   end
 
+  def add_new_score(name, answer, turns, time)
+    to_add = [name, answer, turns, time]
+    @scores << to_add
+  end
+
   def sort_score
     @scores = @scores.sort_by { |score| score[2].to_i }
   end
 
+  def get_top_ten
+    10.times do |x|
+      @top_ten << @scores[x] if @scores[x] != nil
+      @top_ten[x].unshift(x+1) if @top_ten[x] != nil
+    end
+  end
+
+  def print_top_ten
+    outstream.puts @header_for_display
+  @top_ten.map { |score| outstream.puts "#{score[0].to_s.ljust(9)} #{score[1].to_s.ljust(10)} #{score[2].to_s.ljust(9)}  #{score[3].to_s.ljust(10)} #{score[4].to_s.ljust(10)}"  }
+  end
 
   def write_top_ten
     File.open(@filename, "w") do |file|
@@ -48,22 +65,8 @@ class Highscore
     end
   end
 
-  def get_top_ten
-    10.times do |x|
-      @top_ten << @scores[x] if @scores[x] != nil
-      @top_ten[x].unshift(x+1) if @top_ten[x] != nil
-    end
-  end
 
-  def print_top_ten
-    outstream.puts "#{"rank".ljust(10)}#{"Name".ljust(10)} #{"Answer".ljust(10)} #{"Score".ljust(10)} #{"Time".ljust(10)}"
-  @top_ten.map { |score| outstream.puts "#{score[0].to_s.ljust(9)} #{score[1].to_s.ljust(10)} #{score[2].to_s.ljust(9)}  #{score[3].to_s.ljust(10)} #{score[4].to_s.ljust(10)}"  }
-  end
 
-  def add_new_score(name, answer, turns, time)
-    to_add = [name, answer, turns, time]
-    @scores << to_add
-  end
 
   def calculate_average_score
     all_scores  = []
