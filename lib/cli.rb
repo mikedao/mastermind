@@ -20,7 +20,7 @@ class CLI
       @command = instream.gets.strip
       process_initial_commands
     end
-    outstream.puts Messages.ending
+    # outstream.puts Messages.game_quit
     abort
   end
 

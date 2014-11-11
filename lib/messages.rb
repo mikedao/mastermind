@@ -38,7 +38,6 @@ module Messages
     minutes = time_elapsed / 60
     seconds = time_elapsed % 60
     puts "\nCongratulations!.\nYour winning guess was #{layout}, you took #{turns} turns, and you did it in #{minutes} #{minutes == 1 ? "minute" : "minutes"} and #{seconds} seconds. "
-    program_instructions
   end
 
   def self.not_a_valid_guess

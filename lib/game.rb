@@ -1,6 +1,8 @@
 require 'board'
 require 'timer'
 require 'checker'
+require 'highscore'
+
 class Game
   attr_reader :guess,
               :turns,
@@ -9,7 +11,8 @@ class Game
               :command,
               :instream,
               :outstream,
-              :timer
+              :timer,
+              :highscore
 
   def initialize(instream, outstream)
     @guess          = 0
@@ -20,6 +23,7 @@ class Game
     @instream       = instream
     @outstream      = outstream
     @timer          = Timer.new
+    @highscore      = Highscore.new(instream, outstream,'highscore.csv')
   end
 
   def play
@@ -47,10 +51,12 @@ class Game
       abort
     when Checker.win?(layout, guess)
       timer.end_timer
-      puts "Layout #{layout.join}"
-      puts "Turns #{turns}"
-      puts "Time Elapsed #{timer.time_elapsed}"
       outstream.puts Messages.game_win(layout.join.upcase, turns, timer.time_elapsed)
+      puts "What is your name?"
+      print "> "
+      name = instream.gets.strip
+      highscore.do_high_scores(name,layout.join.upcase, turns, timer.time_elapsed)
+      outstream.puts Messages.program_instructions
     when Checker.not_a_valid_guess?(guess)
       outstream.puts Messages.not_a_valid_guess
     end
@@ -59,6 +65,5 @@ class Game
   def add_turn
     @turns += 1
   end
-
 
 end
