@@ -21,8 +21,8 @@ class Highscore
     sort_score
     get_top_ten
     print_top_ten
-    add_headers
     write_top_ten
+    outstream.puts show_averages
   end
 
   def load_old_scores
@@ -35,20 +35,18 @@ class Highscore
     @scores = @scores.sort_by { |score| score[2].to_i }
   end
 
-  def add_headers
+
+  def write_top_ten
     File.open(@filename, "w") do |file|
       file.puts "Name,Answer,Score,Time"
     end
-  end
 
-  def write_top_ten
     File.open(@filename, "a") do |file|
       @top_ten.map do |score|
         file.puts "#{score[1]},#{score[2]},#{score[3]},#{score[4]}"
       end
     end
   end
-
 
   def get_top_ten
     10.times do |x|
@@ -67,4 +65,19 @@ class Highscore
     @scores << to_add
   end
 
+  def calculate_average_score
+    all_scores  = []
+    @top_ten.map { |array| all_scores << array[3].to_i }
+    all_scores.reduce(:+)/10
+  end
+
+  def calculate_average_time
+    all_times   = []
+    @top_ten.map { |array| all_times << array[4].to_i }
+    all_times.reduce(:+)/10
+  end
+
+  def show_averages
+    "Average score was #{calculate_average_score} and average time was #{calculate_average_time}."
+  end
 end
