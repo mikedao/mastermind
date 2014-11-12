@@ -1,4 +1,3 @@
-
 class Board
   COLORS = ["r", "g", "b", "y"]
   attr_reader :layout

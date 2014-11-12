@@ -1,5 +1,5 @@
 module Messages
-  
+
   def self.intro
     "Welcome to MASTERMIND." +
     program_instructions
@@ -57,4 +57,5 @@ module Messages
   def self.clear_screen
     print "\e[2J\e[f"
   end
+  
 end
