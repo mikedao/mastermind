@@ -13,7 +13,7 @@ class Highscore
     @scores               = []
     @filename             = filename
     @top_ten              = []
-    @header_for_display   = "#{"Rank".ljust(10)}#{"Name".ljust(10)} #{"Answer".ljust(10)} #{"Score".ljust(10)} #{"Time".ljust(10)}"
+    @header_for_display   = "#{"Rank".center(20)}#{"Name".center(20)} #{"Answer".center(20)} #{"Score".center(20)} #{"Time".center(20)}"
   end
 
   def do_high_scores(name, answer, score, time)
@@ -46,8 +46,9 @@ class Highscore
   end
 
   def print_top_ten
+    outstream.puts "#{'HIGH SCORES'.center(100,'=')}"
     outstream.puts @header_for_display
-    @top_ten.each_with_index { |score, i| outstream.puts "#{(i+1).to_s.ljust(9)} #{score[0].to_s.ljust(10)} #{score[1].to_s.ljust(9)}  #{score[2].to_s.ljust(10)} #{score[3].to_s.ljust(10)}"  }
+    @top_ten.each_with_index { |score, i| outstream.puts "#{(i+1).to_s.center(20)} #{score[0].to_s.center(20)} #{score[1].to_s.center(20)}  #{score[2].to_s.center(20)} #{score[3].to_s.center(20)}"  }
   end
 
   def write_top_ten
@@ -75,6 +76,6 @@ class Highscore
   end
 
   def show_averages
-    "Average score was #{calculate_average_score} and average time was #{calculate_average_time}."
+    "\nAverage score was #{calculate_average_score} and average time was #{calculate_average_time}."
   end
 end
