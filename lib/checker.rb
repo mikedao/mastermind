@@ -12,6 +12,10 @@ module Checker
     command == "q" || command == "quit"
   end
 
+  def self.not_valid_answer?(guess, valid_colors)
+    !(guess.all? { |char| valid_colors.include? char } && guess.size == 4)
+  end
+
   def self.correct_positions(layout, answer)
     (0..layout.length-1).select do |i|
       layout[i] == answer[i]

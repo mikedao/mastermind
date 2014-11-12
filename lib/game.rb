@@ -15,6 +15,7 @@ class Game
               :highscore
 
 
+
   def initialize(instream, outstream)
     @guess          = ""
     @turns          = 0
@@ -35,6 +36,8 @@ class Game
       print "> "
       @command = instream.gets.strip
       @guess   = command.downcase.split('')
+      puts Messages.guess_status(Checker.correct_positions(layout, guess),
+        Checker.correct_colors(layout, guess)) unless Checker.not_valid_answer?(guess, Board::COLORS)
       process_game_turn
     end
   end
@@ -43,8 +46,6 @@ class Game
 
   def process_game_turn
     add_turn
-    puts Messages.guess_status(Checker.correct_positions(layout, guess),
-      Checker.correct_colors(layout, guess))
     case
     when Checker.exit?(command)
       outstream.puts Messages.game_quit
@@ -57,7 +58,7 @@ class Game
       name = instream.gets.strip
       highscore.do_high_scores(name,layout.join.upcase, turns, timer.time_elapsed)
       outstream.puts Messages.program_instructions
-    when Checker.not_a_valid_guess?(guess)
+    when Checker.not_valid_answer?(guess, Board::COLORS)
       outstream.puts Messages.not_a_valid_guess
     end
   end
