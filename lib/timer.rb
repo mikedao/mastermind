@@ -1,5 +1,6 @@
 class Timer
-  attr_reader :start, :end
+  attr_reader :start,
+              :end
 
   def initialize
     @start = Time.now

@@ -2,11 +2,12 @@ require 'game'
 require 'messages'
 
 class CLI
-  attr_reader :command, :instream, :outstream
+  attr_reader :command,
+              :instream,
+              :outstream
 
   def initialize(instream, outstream)
     @command   = ""
-    # @messages  = Messages.new
     @instream  = instream
     @outstream = outstream
   end

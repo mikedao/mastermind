@@ -1,4 +1,5 @@
 module Messages
+  
   def self.intro
     "Welcome to MASTERMIND." +
     program_instructions
