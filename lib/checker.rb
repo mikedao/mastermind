@@ -19,12 +19,17 @@ module Checker
   end
 
   def self.correct_colors(layout, answer)
-    correct_colors = 0
-    ["r", "g", "b", "y"].map do |key|
-      correct_colors += [calculate_hash(layout)[key],
-      calculate_hash(answer)[key]].min
+    all_correct_colors(layout, answer) - correct_positions(layout, answer)
+  end
+
+  def self.all_correct_colors(layout, answer)
+    Board::COLORS.inject(0) do |correct_colors, color|
+      correct_colors + color_matches(color, layout, answer)
     end
-      correct_colors - correct_positions(layout, answer)
+  end
+
+  def self.color_matches(color, layout, answer)
+    [calculate_hash(layout)[color], calculate_hash(answer)[color]].min
   end
 
   def self.calculate_hash(start)

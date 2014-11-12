@@ -42,15 +42,12 @@ class Highscore
   end
 
   def get_top_ten
-    10.times do |x|
-      @top_ten << @scores[x] if @scores[x] != nil
-      @top_ten[x].unshift(x+1) if @top_ten[x] != nil
-    end
+    @top_ten = @scores.first(10)
   end
 
   def print_top_ten
     outstream.puts @header_for_display
-  @top_ten.map { |score| outstream.puts "#{score[0].to_s.ljust(9)} #{score[1].to_s.ljust(10)} #{score[2].to_s.ljust(9)}  #{score[3].to_s.ljust(10)} #{score[4].to_s.ljust(10)}"  }
+    @top_ten.each_with_index { |score, i| outstream.puts "#{(i+1).to_s.ljust(9)} #{score[0].to_s.ljust(10)} #{score[1].to_s.ljust(9)}  #{score[2].to_s.ljust(10)} #{score[3].to_s.ljust(10)}"  }
   end
 
   def write_top_ten
@@ -60,23 +57,20 @@ class Highscore
 
     File.open(@filename, "a") do |file|
       @top_ten.map do |score|
-        file.puts "#{score[1]},#{score[2]},#{score[3]},#{score[4]}"
+        file.puts "#{score[0]},#{score[1]},#{score[2]},#{score[3]}"
       end
     end
   end
 
-
-
-
   def calculate_average_score
     all_scores  = []
-    @top_ten.map { |array| all_scores << array[3].to_i }
+    @top_ten.each { |array| all_scores << array[2].to_i }
     all_scores.reduce(:+)/10
   end
 
   def calculate_average_time
     all_times   = []
-    @top_ten.map { |array| all_times << array[4].to_i }
+    @top_ten.each { |array| all_times << array[3].to_i }
     all_times.reduce(:+)/10
   end
 
