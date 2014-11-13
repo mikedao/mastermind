@@ -7,4 +7,5 @@ class GameTest < Minitest::Test
     assert_equal 0, game.turns
   end
 
+  
 end

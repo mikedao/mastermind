@@ -16,7 +16,7 @@ class CLI
     outstream.puts Messages.clear_screen
     outstream.puts Messages.intro
     until finished?
-      outstream.print "#{Messages.command_request} \n> "
+      outstream.print Messages.command_request
       @command = instream.gets.strip
       process_initial_commands
     end

@@ -45,13 +45,12 @@ class Game
   private
 
   def pre_process
-    outstream.puts Messages.turn_indicator(turns, timer.current_elapsed_time)
-    outstream.puts Messages.game_command_request
-    print "> "
+    # outstream.puts Messages.turn_indicator(turns, timer.current_elapsed_time)
+    outstream.print Messages.game_command_request(turns, timer.current_elapsed_time)
     @command = instream.gets.strip
     @guess = command.downcase.split('')
     @log << @guess.join if !Checker.not_valid_answer?(guess, Board::COLORS)
-    puts Messages.guess_status(Checker.correct_positions(layout, guess),
+    outstream.puts Messages.guess_status(Checker.correct_positions(layout, guess),
       Checker.correct_colors(layout, guess)) unless Checker.not_valid_answer?(guess, Board::COLORS)
   end
 

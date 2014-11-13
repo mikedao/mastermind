@@ -3,8 +3,8 @@ class Board
   attr_reader :layout
 
   def initialize
-    @layout = []
-    4.times { @layout << COLORS.sample }
+[]
+    @layout = COLORS.map { COLORS.sample }
   end
 
 end

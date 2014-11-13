@@ -18,12 +18,16 @@ module Messages
   end
 
   def self.command_request
-    "\nEnter your command: "
+    "\nEnter your command: \n> "
+  end
+
+  def self.game_command_request(turns, time)
+    "\nEnter your command: \n[ Turns: #{turns} Time: #{time} ] > "
   end
 
   def self.game_instructions
-    print "\e[2J\e[f"
-    "\nI have selected a secret combination of colors(Red (r), Green (g), Blue (b) and Yellow (y)). Guess the combination to win. I will tell you how many of your colors are in the right position. I will also tell you how many colors are in the wrong position."
+    clear_screen
+    "\nI have selected a secret combination of colors(Red (r), Green (g), Blue (b) and Yellow (y)). Guess the combination to win. I will tell you how many of your colors are in the right position. I will also tell you how many colors are in the wrong position.\n" + program_instructions
   end
 
   def self.game_intro
@@ -32,10 +36,6 @@ module Messages
 
   def self.turn_indicator(turns, elapsed_time)
     "This is turn #{turns}. #{elapsed_time} seconds have elapsed."
-  end
-
-  def self.game_command_request
-    "\nEnter your guess: "
   end
 
   def self.game_quit
