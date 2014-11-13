@@ -45,7 +45,6 @@ class Game
   private
 
   def pre_process
-    # outstream.puts Messages.turn_indicator(turns, timer.current_elapsed_time)
     outstream.print Messages.game_command_request(turns, timer.current_elapsed_time)
     @command = instream.gets.strip
     @guess = command.downcase.split('')

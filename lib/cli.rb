@@ -22,8 +22,6 @@ class CLI
     end
   end
 
-  private
-
   def process_initial_commands
     case
     when finished?

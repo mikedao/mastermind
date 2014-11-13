@@ -39,7 +39,7 @@ class Highscore
   end
 
   def sort_score
-    @scores = @scores.sort_by { |score| score[2].to_i }
+    @scores = @scores.sort_by { |score| score[3].to_i }
   end
 
   def get_top_ten
@@ -77,6 +77,6 @@ class Highscore
   end
 
   def show_averages
-    "\nAverage score was #{calculate_average_score} and average time was #{calculate_average_time}."
+    "\nAverage score of the top ten was #{calculate_average_score} and average time was #{calculate_average_time}."
   end
 end
