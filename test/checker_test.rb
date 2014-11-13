@@ -3,17 +3,12 @@ require 'checker'
 
 class CheckerTest < Minitest::Test
 
-  def test_not_a_valid_test
-    refute Checker.not_a_valid_guess?("rbrr")
-    assert Checker.not_a_valid_guess?("rbrrrr")
-  end
-
   def test_win_works
     refute Checker.win?("rrrr","yyyy")
     assert Checker.win?("bbbb","bbbb")
   end
 
-  def test_exit_worls
+  def test_exit_works
     assert Checker.exit?("q")
     assert Checker.exit?("quit")
     refute Checker.exit?("quits")

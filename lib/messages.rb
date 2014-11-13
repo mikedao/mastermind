@@ -1,8 +1,16 @@
+require 'colorize'
+
 module Messages
 
   def self.intro
-    "Welcome to MASTERMIND." +
-    program_instructions
+'WELCOME TO...
+   _____      _____    _______________________________________      _____  .___ _______  ________
+  /     \    /  _  \  /   _____/\__    ___/\_   _____/\______ \    /     \ |   |\      \ \______ \
+ /  \ /  \  /  /_\  \ \_____  \   |    |    |    __)_  |    |  \  /  \ /  \|   |/   |   \ |    |  \
+/    Y    \/    |    \/        \  |    |    |        \ |    `   \/    Y    \   /    |    \|    `   \
+\____|__  /\____|__  /_______  /  |____|   /_______  //_______  /\____|__  /___\____|__  /_______  /
+        \/         \/        \/                    \/         \/         \/            \/        \/
+' + program_instructions
   end
 
   def self.program_instructions
@@ -31,7 +39,7 @@ module Messages
   end
 
   def self.game_quit
-    "\n Exiting the game."
+    "\nExiting the game."
   end
 
   def self.game_win(layout, turns, time_elapsed)
@@ -45,11 +53,6 @@ module Messages
     "\nYour guess is not valid. Try again."
   end
 
-  def self.not_a_valid_command
-    puts "That's not a valid command."
-    program_instructions
-  end
-
   def self.guess_status(correct_position, correct_colors)
     "\nYou have #{correct_position} items in the correct position. You have #{correct_colors} in the incorrect position."
   end
@@ -57,5 +60,5 @@ module Messages
   def self.clear_screen
     print "\e[2J\e[f"
   end
-  
+
 end

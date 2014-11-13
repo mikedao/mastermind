@@ -16,13 +16,10 @@ class CLI
     outstream.puts Messages.clear_screen
     outstream.puts Messages.intro
     until finished?
-      outstream.puts Messages.command_request
-      print "> "
+      outstream.print "#{Messages.command_request} \n> "
       @command = instream.gets.strip
       process_initial_commands
     end
-    # outstream.puts Messages.game_quit
-    abort
   end
 
   private

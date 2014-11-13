@@ -2,12 +2,9 @@ require_relative 'test_helper'
 
 class GameTest < Minitest::Test
 
-  def test_add_turn
-    skip
-    # HOW DO YOU TEST A PRIVATE METHOD
+  def test_turn_value_when_initialized
     game = Game.new($stdin,$stdout)
-    game.add_turn
-    assert_equal 1,
+    assert_equal 0, game.turns
   end
 
 end

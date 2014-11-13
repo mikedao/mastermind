@@ -4,6 +4,7 @@ require 'checker'
 require 'highscore'
 require 'history'
 
+
 class Game
   attr_reader :guess,
               :turns,
@@ -34,7 +35,7 @@ class Game
 
   def play
     outstream.puts @layout.join
-    outstream.puts Messages.game_intro
+    outstream.puts Messages.game_intro.colorize(:blue)
     until Checker.win?(layout, guess) || Checker.exit?(command)
       pre_process
       process_game_turn

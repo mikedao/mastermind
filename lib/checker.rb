@@ -1,9 +1,5 @@
 module Checker
 
-  def self.not_a_valid_guess?(guess)
-    guess.size != 4
-  end
-
   def self.win?(layout, guess)
     guess == layout
   end
