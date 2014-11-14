@@ -67,13 +67,19 @@ class Highscore
   def calculate_average_score
     all_scores  = []
     @top_ten.each { |array| all_scores << array[2].to_i }
-    all_scores.reduce(:+)/10
+    average(all_scores)
   end
+
+  def average(number)
+    number/10
+  end
+
+
 
   def calculate_average_time
     all_times   = []
     @top_ten.each { |array| all_times << array[3].to_i }
-    all_times.reduce(:+)/10
+    average(all_times)
   end
 
   def show_averages
