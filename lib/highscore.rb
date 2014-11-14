@@ -47,8 +47,7 @@ class Highscore
   end
 
   def print_top_ten
-    outstream.puts "#{'HIGH SCORES'.center(100,'=')}"
-    outstream.puts header_for_display
+    outstream.puts "#{'HIGH SCORES'.center(100,'=')}\n #{header_for_display}" 
     @top_ten.each_with_index { |score, i| outstream.puts "#{(i+1).to_s.center(20)} #{score[0].to_s.center(20)} #{score[1].to_s.center(20)}  #{score[2].to_s.center(20)} #{score[3].to_s.center(20)}"  }
   end
 
