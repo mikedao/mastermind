@@ -49,7 +49,11 @@ class Game
     @command = instream.gets.strip
     @guess = command.downcase.split('')
     @log << @guess.join if !Checker.not_valid_answer?(guess, Board::COLORS)
-    outstream.puts Messages.guess_status(Checker.correct_positions(layout, guess),
+    outstream.puts build_guess_message
+  end
+
+  def build_guess_message
+    Messages.guess_status(Checker.correct_positions(layout, guess),
       Checker.correct_colors(layout, guess)) unless Checker.not_valid_answer?(guess, Board::COLORS)
   end
 
@@ -76,6 +80,10 @@ class Game
     outstream.puts Messages.program_instructions
   end
 
+  def get_player_name
+    outstream.print "What is your name?\n > "
+    name = instream.gets.strip
+  end
 
   def add_turn
     @turns += 1
