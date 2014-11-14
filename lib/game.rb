@@ -74,8 +74,7 @@ class Game
   def win_process
     timer.end_timer
     outstream.puts Messages.game_win(layout.join.upcase, turns, timer.time_elapsed)
-    outstream.print "What is your name?\n > "
-    name = instream.gets.strip
+    get_player_name
     highscore.do_high_scores(name,layout.join.upcase, turns, timer.time_elapsed)
     outstream.puts Messages.program_instructions
   end
