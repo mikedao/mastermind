@@ -12,8 +12,6 @@ class BoardTest < Minitest::Test
     board1 = board.layout
     board = Board.new
     board2 = board.layout
-    puts "Board 1: #{board1}"
-    puts "Board 2: #{board2}"
     refute board1 == board2
   end
 

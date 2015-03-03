@@ -24,7 +24,9 @@ class MessagesTest < Minitest::Test
   end
 
   def test_game_command_request
-    assert Messages.game_command_request.include?("guess")
+    assert Messages.game_command_request(5,2).include?("Enter")
+    assert Messages.game_command_request(5,2).include?("5")
+    assert Messages.game_command_request(5,2).include?("2")
   end
 
   def test_game_quit_message

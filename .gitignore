@@ -1,1 +1,4 @@
+# Ignore Simplecov coverage report
+coverage
+
 .DS_Store

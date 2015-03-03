@@ -1,12 +1,28 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    coderay (1.1.0)
     colorize (0.7.3)
+    docile (1.1.5)
+    method_source (0.8.2)
     minitest (5.4.3)
+    multi_json (1.10.1)
+    pry (0.10.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    simplecov (0.9.2)
+      docile (~> 1.1.0)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.9.0)
+    simplecov-html (0.9.0)
+    slop (3.6.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  colorize (~> 0.7.3)
+  colorize
   minitest
+  pry
+  simplecov
